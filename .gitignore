@@ -1,1 +1,8 @@
 *.o
+*.aux
+*.toc
+*.bbl
+*.gz
+*.out
+*.exe
+*.blg

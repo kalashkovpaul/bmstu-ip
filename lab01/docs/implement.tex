@@ -1,0 +1,61 @@
+\chapter{Технологическая часть}
+
+В данном разделе будут рассмотрены средства реализации, а также представлены листинги реализаций алгоритма шифрования машины <<Энигма>>.
+
+\section{Средства реализации}
+В данной работе для реализации был выбран язык программирования $C$. Данный язык удоволетворяет поставленным критериям по средствам реализации.
+
+\section{Реализация алгоритма}
+
+В листингах \ref{lst:enigma1} представлена реализация алгоритма шифрования машины <<Энигма>>.
+
+\begin{center}
+    \captionsetup{justification=raggedright,singlelinecheck=off}
+    \begin{lstlisting}[label=lst:enigma1,caption=Реализация алгоритма шифрования машины <<Энигма>>]
+char cypher(char let)
+{
+    if (let == ' ') let = 'X';
+    if (!is_letter(let)) return let;
+    if (let > 'Z') let = let - ('a' - 'A');
+
+    int letter = (int)let;
+
+    letter = commutation[letter - 'A'];
+    letter = ((letter - 'A') + (rotors_positions[0] - 'A')) % 26;
+    letter = rotors[chosen_rotors[0]][letter] - 'A';
+    letter = (letter + (letter_distance(rotors_positions[1], rotors_positions[0]))) % 26;
+    letter = rotors[chosen_rotors[1]][letter] - 'A';
+    letter = (letter + (letter_distance(rotors_positions[2], rotors_positions[1]))) % 26;
+    letter = rotors[chosen_rotors[2]][letter] - 'A';
+    letter = letter - (rotors_positions[2] - 'A');
+\end{lstlisting}
+\end{center}
+
+\begin{center}
+    \captionsetup{justification=raggedright,singlelinecheck=off}
+    \begin{lstlisting}[label=lst:enigma2,caption=Реализация алгоритма шифрования машины <<Энигма>>]
+    if (letter < 0) letter = 26 + letter;
+
+    letter = reflectors[chosen_reflector][letter] - 'A';
+    letter = (letter + (rotors_positions[2] - 'A')) % 26;
+    letter = find_letter_in_rotor((letter + 'A'), 2);
+    letter = (letter - (letter_distance(rotors_positions[2], rotors_positions[1])));
+    if (letter < 0) letter = 26 + letter;
+    letter = find_letter_in_rotor((letter + 'A'), 1);
+    letter = (letter - (letter_distance(rotors_positions[1], rotors_positions[0])));
+    if (letter < 0) letter = 26 + letter;
+    letter = find_letter_in_rotor((letter + 'A'), 0);
+    letter = letter - (rotors_positions[0] - 'A');
+    if (letter < 0) letter = 26 + letter;
+    letter = commutation[letter];
+
+    rotate_first_rotor();
+    return (char) letter;
+}
+\end{lstlisting}
+\end{center}
+
+
+\section*{Вывод}
+
+Были представлены листинги реализаций всех алгоритмов умножения матриц -- стандартного, Винограда и оптимизированного алгоритма Винограда. Также в данном разделе была приведена информации о выбранных средствах для разработки алгоритмов.

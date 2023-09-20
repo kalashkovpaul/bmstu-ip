@@ -16,49 +16,28 @@ char cypher(char let)
 
     int letter = (int)let;
 
-    printf("%c\n", (char)letter);
     letter = commutation[letter - 'A'];
-    printf("%c\n", (char)letter);
     letter = ((letter - 'A') + (rotors_positions[0] - 'A')) % 26;
-    printf("%c\n", (char)letter + 'A');
     letter = rotors[chosen_rotors[0]][letter] - 'A';
-    printf("%c\n", (char)letter + 'A');
     letter = (letter + (letter_distance(rotors_positions[1], rotors_positions[0]))) % 26;
-    printf("%c\n", (char)letter + 'A');
     letter = rotors[chosen_rotors[1]][letter] - 'A';
-    printf("%c\n", (char)letter + 'A');
     letter = (letter + (letter_distance(rotors_positions[2], rotors_positions[1]))) % 26;
-    printf("%c\n", (char)letter + 'A');
     letter = rotors[chosen_rotors[2]][letter] - 'A';
-    printf("%c\n", (char)letter + 'A');
     letter = letter - (rotors_positions[2] - 'A');
     if (letter < 0) letter = 26 + letter;
-    printf("%c\n", (char)letter + 'A');
 
     letter = reflectors[chosen_reflector][letter] - 'A';
-    printf("%c\n", (char)letter + 'A');
     letter = (letter + (rotors_positions[2] - 'A')) % 26;
-    printf("%c\n", (char)letter + 'A');
     letter = find_letter_in_rotor((letter + 'A'), 2);
-    printf("%c\n", (char)letter + 'A');
     letter = (letter - (letter_distance(rotors_positions[2], rotors_positions[1])));
     if (letter < 0) letter = 26 + letter;
-    printf("%c\n", (char)letter + 'A');
-    printf("HERE\n");
     letter = find_letter_in_rotor((letter + 'A'), 1);
-    printf("%c\n", (char)letter + 'A');
     letter = (letter - (letter_distance(rotors_positions[1], rotors_positions[0])));
     if (letter < 0) letter = 26 + letter;
-    printf("%c\n", (char)letter + 'A');
     letter = find_letter_in_rotor((letter + 'A'), 0);
-    printf("%c\n", (char)letter + 'A');
     letter = letter - (rotors_positions[0] - 'A');
     if (letter < 0) letter = 26 + letter;
-    printf("%c\n", (char)letter + 'A');
     letter = commutation[letter];
-    printf("%c\n", (char)letter);
-
-    printf("%d\n", 3);
 
     rotate_first_rotor();
     return (char) letter;

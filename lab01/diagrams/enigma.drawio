@@ -1,0 +1,262 @@
+<mxfile host="65bd71144e">
+    <diagram id="JeN3XUHXLwPGz5JMCtcu" name="Страница 1">
+        <mxGraphModel dx="2730" dy="1653" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1654" pageHeight="2336" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="86" value="" style="rounded=0;whiteSpace=wrap;html=1;strokeColor=none;" vertex="1" parent="1">
+                    <mxGeometry x="63" y="67" width="1521" height="986" as="geometry"/>
+                </mxCell>
+                <mxCell id="2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=0.5;exitDx=0;exitDy=30;exitPerimeter=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;endArrow=none;endFill=0;" parent="1" source="3" target="4" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="3" value="Начало" style="html=1;dashed=0;whitespace=wrap;shape=mxgraph.dfd.start" parent="1" vertex="1">
+                    <mxGeometry x="607" y="80" width="200" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="72" style="edgeStyle=none;rounded=0;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;endArrow=none;endFill=0;" edge="1" parent="1" source="4" target="71">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="4" value="choice = -1" style="html=1;dashed=0;whitespace=wrap;" parent="1" vertex="1">
+                    <mxGeometry x="607" y="160" width="200" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="5" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=none;endFill=0;dashed=1;" parent="1" source="6" target="3" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="6" value="Программная реализация&lt;br&gt;шифровальной машины &quot;Энигма&quot;" style="html=1;dashed=0;whitespace=wrap;shape=partialRectangle;right=0;align=right;direction=west" parent="1" vertex="1">
+                    <mxGeometry x="457" y="70" width="50" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="18" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;endArrow=none;endFill=0;" parent="1" source="40" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="707" y="400" as="sourcePoint"/>
+                        <mxPoint x="707" y="420" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="40" value="Ввод choice" style="shape=parallelogram;perimeter=parallelogramPerimeter;whiteSpace=wrap;html=1;fixedSize=1;rotation=0;" parent="1" vertex="1">
+                    <mxGeometry x="607" y="340" width="200" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="44" style="edgeStyle=none;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;rounded=0;" edge="1" parent="1" source="42" target="43">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="1247" y="450"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="45" value="CYPHER" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="44">
+                    <mxGeometry x="0.0268" y="3" relative="1" as="geometry">
+                        <mxPoint x="11" y="-12" as="offset"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="47" style="edgeStyle=none;html=1;rounded=0;" edge="1" parent="1" source="42" target="46">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="707" y="510"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="48" value="SHOW_CONFIGURATION" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="47">
+                    <mxGeometry x="-0.0646" y="-2" relative="1" as="geometry">
+                        <mxPoint x="21" y="-11" as="offset"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="50" style="edgeStyle=none;rounded=0;html=1;" edge="1" parent="1" source="42" target="49">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="707" y="580"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="51" value="SET_ROTORS_STATES" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="50">
+                    <mxGeometry x="-0.2612" y="3" relative="1" as="geometry">
+                        <mxPoint x="77" y="-6" as="offset"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="53" style="edgeStyle=none;rounded=0;html=1;" edge="1" parent="1" source="42" target="52">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="707" y="650"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="54" value="SET_ROTORS" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="53">
+                    <mxGeometry x="0.0356" y="-1" relative="1" as="geometry">
+                        <mxPoint x="79" y="-11" as="offset"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="56" value="SET_REFLECTOR" style="edgeStyle=none;rounded=0;html=1;" edge="1" parent="1" source="42" target="55">
+                    <mxGeometry x="0.5842" y="-10" relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="707" y="650"/>
+                        </Array>
+                        <mxPoint as="offset"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="59" style="edgeStyle=none;rounded=0;html=1;" edge="1" parent="1" source="42" target="58">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="707" y="580"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="60" value="SET_COMMUTATORS" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="59">
+                    <mxGeometry x="0.2033" relative="1" as="geometry">
+                        <mxPoint x="-30" y="-10" as="offset"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="62" style="edgeStyle=none;rounded=0;html=1;" edge="1" parent="1" source="42" target="61">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="707" y="510"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="63" value="BACKUP_COMMUTATORS" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="62">
+                    <mxGeometry x="-0.0911" relative="1" as="geometry">
+                        <mxPoint x="-26" y="-10" as="offset"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="65" style="edgeStyle=none;rounded=0;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;" edge="1" parent="1" source="42" target="64">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="207" y="450"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="66" value="default" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="65">
+                    <mxGeometry x="0.7369" relative="1" as="geometry">
+                        <mxPoint x="163" y="-10" as="offset"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="68" style="edgeStyle=none;rounded=0;html=1;" edge="1" parent="1" source="42" target="67">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="69" value="EXIT" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="68">
+                    <mxGeometry x="0.7321" y="3" relative="1" as="geometry">
+                        <mxPoint x="-54" y="-13" as="offset"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="42" value="choice" style="rhombus;whiteSpace=wrap;html=1;rotation=0;" parent="1" vertex="1">
+                    <mxGeometry x="607" y="420" width="200" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="81" style="edgeStyle=none;rounded=0;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;endArrow=classic;endFill=1;" edge="1" parent="1" source="43">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="327" y="890" as="targetPoint"/>
+                        <Array as="points">
+                            <mxPoint x="1247" y="830"/>
+                            <mxPoint x="327" y="830"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="43" value="Зашифровать сообщение&lt;br&gt;Ввод: to_cypher.txt&lt;br&gt;Вывод: to_decypher.txt" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;rotation=0;" vertex="1" parent="1">
+                    <mxGeometry x="1147" y="480" width="200" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="80" style="edgeStyle=none;rounded=0;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;endArrow=classic;endFill=1;" edge="1" parent="1" source="46">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="327" y="890" as="targetPoint"/>
+                        <Array as="points">
+                            <mxPoint x="1087" y="510"/>
+                            <mxPoint x="1087" y="830"/>
+                            <mxPoint x="327" y="830"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="46" value="Показать состояние роторов, рефлектора и коммутационной панели" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;rotation=0;" vertex="1" parent="1">
+                    <mxGeometry x="867" y="480" width="200" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="79" style="edgeStyle=none;rounded=0;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;endArrow=classic;endFill=1;" edge="1" parent="1" source="49">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="327" y="890" as="targetPoint"/>
+                        <Array as="points">
+                            <mxPoint x="1087" y="580"/>
+                            <mxPoint x="1087" y="830"/>
+                            <mxPoint x="327" y="830"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="49" value="Установить состояние роторов" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;rotation=0;" vertex="1" parent="1">
+                    <mxGeometry x="867" y="550" width="200" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="78" style="edgeStyle=none;rounded=0;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;endArrow=classic;endFill=1;" edge="1" parent="1" source="52">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="327" y="890" as="targetPoint"/>
+                        <Array as="points">
+                            <mxPoint x="967" y="830"/>
+                            <mxPoint x="327" y="830"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="52" value="Выбрать 3 ротора из 10" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;rotation=0;" vertex="1" parent="1">
+                    <mxGeometry x="867" y="620" width="200" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="75" style="edgeStyle=none;rounded=0;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;endArrow=none;endFill=0;" edge="1" parent="1" source="55">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="207" y="830" as="targetPoint"/>
+                        <Array as="points">
+                            <mxPoint x="457" y="830"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="55" value="Выбрать 1 рефлектор из 2" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;rotation=0;" vertex="1" parent="1">
+                    <mxGeometry x="357" y="620" width="200" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="76" style="edgeStyle=none;rounded=0;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;endArrow=classic;endFill=1;" edge="1" parent="1" source="58">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="327" y="580" as="targetPoint"/>
+                        <Array as="points">
+                            <mxPoint x="337" y="580"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="58" value="Установить состояние коммутационной панели" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;rotation=0;" vertex="1" parent="1">
+                    <mxGeometry x="357" y="550" width="200" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="77" style="edgeStyle=none;rounded=0;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;endArrow=classic;endFill=1;" edge="1" parent="1" source="61">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="327" y="890" as="targetPoint"/>
+                        <Array as="points">
+                            <mxPoint x="327" y="510"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="61" value="Сбросить коммутационную панель" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;rotation=0;" vertex="1" parent="1">
+                    <mxGeometry x="357" y="480" width="200" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="74" style="edgeStyle=none;rounded=0;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;endArrow=classic;endFill=1;" edge="1" parent="1" source="64">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="707" y="240" as="targetPoint"/>
+                        <Array as="points">
+                            <mxPoint x="207" y="830"/>
+                            <mxPoint x="327" y="830"/>
+                            <mxPoint x="327" y="890"/>
+                            <mxPoint x="77" y="890"/>
+                            <mxPoint x="77" y="240"/>
+                            <mxPoint x="707" y="240"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="64" value="Вывести сообщение об ошибке" style="html=1;dashed=0;whitespace=wrap;" vertex="1" parent="1">
+                    <mxGeometry x="107" y="480" width="200" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="85" style="edgeStyle=none;rounded=0;html=1;entryX=0.5;entryY=0.5;entryDx=0;entryDy=-30.000000000000004;entryPerimeter=0;endArrow=classic;endFill=1;" edge="1" parent="1" source="67" target="82">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="1477" y="910"/>
+                            <mxPoint x="717" y="910"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="67" value="Вывести сообщение о&lt;br&gt;завершении работы программы" style="html=1;dashed=0;whitespace=wrap;" vertex="1" parent="1">
+                    <mxGeometry x="1377" y="420" width="200" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="73" style="edgeStyle=none;rounded=0;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;endArrow=none;endFill=0;" edge="1" parent="1" source="71" target="40">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="71" value="Вывод меню" style="shape=parallelogram;perimeter=parallelogramPerimeter;whiteSpace=wrap;html=1;fixedSize=1;rotation=0;" vertex="1" parent="1">
+                    <mxGeometry x="607" y="260" width="200" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="82" value="Конец" style="html=1;dashed=0;whitespace=wrap;shape=mxgraph.dfd.start" vertex="1" parent="1">
+                    <mxGeometry x="617" y="990" width="200" height="60" as="geometry"/>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+</mxfile>

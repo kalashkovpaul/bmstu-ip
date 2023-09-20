@@ -1,15 +1,1 @@
-A B C D E F G H I J K  L  M  N  O  P  Q  R  S  T  U  V  W  X  Y  Z
-0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25
-
-I + R = 8 + 17 = 25 = Z
-Z = J
-J + (V - R) = J + 4 = N
-N = T
-T + (C - V) = T + 7 = 26 = A
-A = B
-B - C = Z
-Z = T
-T + C = 19 + 2 = 21 = V
-V = L
-L - (C - V) = L - 7 = 11 - 7 = 4 = E
-E = Z ???
+A & B & C & D & E & F & G & H & I & J & K & L & M & N & O & P & Q & R & S & T & U & V & W & X & Y & Z
