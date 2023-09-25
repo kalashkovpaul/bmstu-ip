@@ -1,7 +1,10 @@
 #include <stdio.h>
+#include <time.h>
+#include <stdlib.h>
 #include "enigma.h"
 #include "menu.h"
 #include "rotors.h"
+#include "constants.h"
 
 void printChoice(void);
 void set_reflector(void);
@@ -12,6 +15,7 @@ void set_rotors_states(void);
 void show_configuration(void);
 void print_commutation(void);
 void cypher_message(void);
+void test_enigma(void);
 
 void menu(void) {
     int choice = -1;
@@ -52,6 +56,10 @@ void menu(void) {
             backup_commutation();
             break;
 
+        case TEST:
+            test_enigma();
+            break;
+
         case EXIT:
             printf("Спасибо, что пользовались Энигмой от Калашкова П. :)\n");
             break;
@@ -72,6 +80,7 @@ void printChoice(void) {
     printf("5. Установить рефлектор\n");
     printf("6. Поменять коммутационную панель\n");
     printf("7. Сбросить соединения на коммутационной панели\n");
+    printf("8. Протестировать работу системы\n");
     printf("\n");
     printf("0. Выйти из меню\n");
     printf("\n");
@@ -307,4 +316,44 @@ void backup_commutation(void)
     }
     printf("Коммункационная панель сброшена. Её состояние:\n");
     print_commutation();
+}
+
+void test_enigma(void)
+{
+    char message[TEST_LENGTH + 1] = {0};
+    char cyphered[TEST_LENGTH] = {0};
+    char decyphered[TEST_LENGTH] = {0};
+    char old_position[CHOSEN_ROTORS];
+    for (int i = 0; i < TEST_TIMES; i++)
+    {
+        for (int j = 0; j < TEST_LENGTH; j++)
+        {
+            int r = rand() % 26;
+            message[j] = 'A' + r;
+        }
+        printf("Message: %s\n", message);
+        for (int j = 0; j < CHOSEN_ROTORS; j++)
+        {
+            old_position[j] = rotors_positions[j];
+        }
+        for (int j = 0; j < TEST_LENGTH; j++)
+        {
+            cyphered[j] = cypher(message[j]);
+        }
+        for (int j = 0; j < CHOSEN_ROTORS; j++)
+        {
+            rotors_positions[j] = old_position[j];
+        }
+        for (int j = 0; j < TEST_LENGTH; j++)
+        {
+            decyphered[j] = cypher(cyphered[j]);
+            if (decyphered[j] != message[j])
+            {
+                printf("FOUND ERROR: %s -> %s -> %s\n", message, cyphered, decyphered);
+                printf("Rotor positions: %c, %c и %c\n", old_position[0], old_position[1], old_position[2]);
+                return;
+            }
+        }
+    }
+    printf("Протестировано успешно!\n");
 }

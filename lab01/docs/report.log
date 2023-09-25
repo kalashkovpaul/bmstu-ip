@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2022.9.17)  20 SEP 2023 21:52
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2022.9.17)  23 SEP 2023 20:04
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1239,7 +1239,7 @@ Package geometry Warning: `pdftex': not available in `\newgeometry'; skipped.
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-<img/b_logo.jpg, id=48, 57.816pt x 65.3715pt>
+<img/b_logo.jpg, id=76, 57.816pt x 65.3715pt>
 File: img/b_logo.jpg Graphic file (type jpg)
 <use img/b_logo.jpg>
 Package pdftex.def Info: img/b_logo.jpg  used on input line 5.
@@ -1389,7 +1389,13 @@ l.10 \include{introd}
 
 
 
-]) [3]
+] [3] [4] [5] [6] [7])
+Overfull \hbox (5.17442pt too wide) in paragraph at lines 177--12
+[]\T2A/cmr/m/n/14.4 Алгоритмы бу-дут по-лу-чать на вход две мат-ри-цы, при-чјм 
+ко-ли-че-ство столб-
+ []
+
+[8]
 \openout2 = `design.aux'.
 
  (./design.tex
@@ -1400,7 +1406,7 @@ Overfull \hbox (1.37677pt too wide) in paragraph at lines 25--26
 ам-мы, ре-а-ли-зу-ю-щей шиф-
  []
 
-<img/enigma.png, id=99, 991.705pt x 1528.71124pt>
+<img/enigma.png, id=187, 991.705pt x 1528.71124pt>
 File: img/enigma.png Graphic file (type png)
 <use img/enigma.png>
 Package pdftex.def Info: img/enigma.png  used on input line 27.
@@ -1408,12 +1414,12 @@ Package pdftex.def Info: img/enigma.png  used on input line 27.
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-) [4
+) [9
 
 
 
 
-] [5 <./img/enigma.png>]
+] [10 <./img/enigma.png>]
 \openout2 = `implement.aux'.
 
  (./implement.tex
@@ -1430,16 +1436,16 @@ LaTeX Font Info:    Trying to load font information for TS1+cmss on input line
 
 (/usr/local/texlive/2022/texmf-dist/tex/latex/base/ts1cmss.fd
 File: ts1cmss.fd 2019/12/16 v2.5j Standard LaTeX font definitions
-) [6
+) [11
 
 
 
 
-]) [7]
+]) [12]
+[13]
 \openout2 = `conclusion.aux'.
 
-
-(./conclusion.tex) [8
+ (./conclusion.tex) [14
 
 
 
@@ -1447,31 +1453,36 @@ File: ts1cmss.fd 2019/12/16 v2.5j Standard LaTeX font definitions
 ] (./report.aux (./title.aux) (./introd.aux)
 (./analysis.aux) (./design.aux) (./implement.aux) (./conclusion.aux))
 Package rerunfilecheck Info: File `report.out' has not changed.
-(rerunfilecheck)             Checksum: 070149D03A9126F96D7848E67B5F0728;2096.
+(rerunfilecheck)             Checksum: 83015A869426E78F3FE1C285175F7B60;3325.
  ) 
 Here is how much of TeX's memory you used:
- 38806 strings out of 478268
- 904564 string characters out of 5846347
- 1341593 words of memory out of 5000000
- 56247 multiletter control sequences out of 15000+600000
- 484131 words of font info for 58 fonts, out of 8000000 for 9000
+ 38879 strings out of 478268
+ 905476 string characters out of 5846347
+ 1344081 words of memory out of 5000000
+ 56275 multiletter control sequences out of 15000+600000
+ 485756 words of font info for 60 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 106i,7n,99p,759b,1616s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 106i,10n,99p,759b,1616s stack positions out of 10000i,1000n,20000p,200000b,200000s
 {/usr/local/texlive/2022/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc
 }{/usr/local/texlive/2022/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t2a.enc}
-</usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb><
-/usr/local/texlive/2022/texmf-dist/fonts/type1/public/cm-super/sfbx1200.pfb></u
-sr/local/texlive/2022/texmf-dist/fonts/type1/public/cm-super/sfbx1440.pfb></usr
-/local/texlive/2022/texmf-dist/fonts/type1/public/cm-super/sfbx2074.pfb></usr/l
-ocal/texlive/2022/texmf-dist/fonts/type1/public/cm-super/sfbx2488.pfb></usr/loc
-al/texlive/2022/texmf-dist/fonts/type1/public/cm-super/sfrm1200.pfb></usr/local
-/texlive/2022/texmf-dist/fonts/type1/public/cm-super/sfrm1440.pfb></usr/local/t
-exlive/2022/texmf-dist/fonts/type1/public/cm-super/sfss1200.pfb></usr/local/tex
-live/2022/texmf-dist/fonts/type1/public/cm-super/sfsx1200.pfb>
-Output written on report.pdf (9 pages, 232512 bytes).
+</usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb><
+/usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></
+usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></us
+r/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/
+local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/l
+ocal/texlive/2022/texmf-dist/fonts/type1/public/cm-super/sfbx1200.pfb></usr/loc
+al/texlive/2022/texmf-dist/fonts/type1/public/cm-super/sfbx1440.pfb></usr/local
+/texlive/2022/texmf-dist/fonts/type1/public/cm-super/sfbx1728.pfb></usr/local/t
+exlive/2022/texmf-dist/fonts/type1/public/cm-super/sfbx2074.pfb></usr/local/tex
+live/2022/texmf-dist/fonts/type1/public/cm-super/sfbx2488.pfb></usr/local/texli
+ve/2022/texmf-dist/fonts/type1/public/cm-super/sfrm1200.pfb></usr/local/texlive
+/2022/texmf-dist/fonts/type1/public/cm-super/sfrm1440.pfb></usr/local/texlive/2
+022/texmf-dist/fonts/type1/public/cm-super/sfss1200.pfb></usr/local/texlive/202
+2/texmf-dist/fonts/type1/public/cm-super/sfsx1200.pfb>
+Output written on report.pdf (15 pages, 307175 bytes).
 PDF statistics:
- 228 PDF objects out of 1000 (max. 8388607)
- 197 compressed objects within 2 object streams
- 86 named destinations out of 1000 (max. 500000)
- 123 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 346 PDF objects out of 1000 (max. 8388607)
+ 301 compressed objects within 4 object streams
+ 127 named destinations out of 1000 (max. 500000)
+ 179 words of extra memory for PDF output out of 10000 (max. 10000000)
 

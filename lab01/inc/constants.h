@@ -8,4 +8,7 @@
 #define INPUT_FILE "./files/to_cypher.txt"
 #define OUTPUT_FILE "./files/to_decypher.txt"
 
+#define TEST_LENGTH 26
+#define TEST_TIMES 100
+
 #define CHOSEN_ROTORS 3

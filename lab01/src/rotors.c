@@ -21,6 +21,6 @@ const char reflectors[REFLECTORS_AMOUNT][ALPHABET_LENGTH] = {
 char alphabet[ALPHABET_LENGTH] = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'};
 char commutation[ALPHABET_LENGTH] = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'};
 char commutation_state[ALPHABET_LENGTH] = {0};
-char rotors_positions[CHOSEN_ROTORS] = {'A', 'A', 'A'};
+char rotors_positions[CHOSEN_ROTORS] = {'C', 'R', 'V'};
 int chosen_rotors[CHOSEN_ROTORS] = {0, 1, 2};
 int chosen_reflector = 1;
