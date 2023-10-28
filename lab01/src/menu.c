@@ -14,7 +14,7 @@ void backup_commutation(void);
 void set_rotors_states(void);
 void show_configuration(void);
 void print_commutation(void);
-void cypher_message(void);
+void cypher_file(void);
 void test_enigma(void);
 
 void menu(void) {
@@ -29,7 +29,7 @@ void menu(void) {
         switch (choice)
         {
         case CYPHER:
-            cypher_message();
+            cypher_file();
             break;
 
         case SHOW_CONGIFURATION:
@@ -87,7 +87,7 @@ void printChoice(void) {
     printf("Выберите пункт: ");
 }
 
-void cypher_message(void)
+void cypher_file(void)
 {
     printf("Введите сообщение в файл to_cypher.txt. После ввода нажмите Enter");
     getchar();

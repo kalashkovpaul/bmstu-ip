@@ -1,0 +1,135 @@
+\chapter{Технологическая часть}
+
+В данном разделе будут рассмотрены средства реализации, а также представлены листинги реализации шифровального алгоритма DES и режима работы CFB, а также произведено тестирование.
+
+\section{Средства реализации}
+В данной работе для реализации был выбран язык программирования $C$. Данный язык удоволетворяет поставленным критериям по средствам реализации.
+
+\section{Реализация алгоритма}
+
+В листингах \ref{lst:des1}--\ref{lst:des3} представлена реализация шифровального алгоритма DES, на листинге \ref{lst:cfb} --- реализация режима работы CFB.
+
+\begin{center}
+    \captionsetup{justification=raggedright,singlelinecheck=off}
+    \begin{lstlisting}[label=lst:des1,caption=Реализация шифровального  алгоритма DES часть 1]
+uint64_t des(uint64_t input, uint64_t key, char mode) {
+    int i, j;
+    char row, column;
+    uint32_t C                  = 0;
+    uint32_t D                  = 0;
+    uint32_t L                  = 0;
+    uint32_t R                  = 0;
+    uint32_t s_output           = 0;
+    uint32_t f_function_res     = 0;
+    uint32_t temp               = 0;
+    uint64_t sub_key[16]        = {0};
+    uint64_t s_input            = 0;
+    uint64_t permuted_choice_1  = 0;
+    uint64_t permuted_choice_2  = 0;
+    uint64_t init_perm_res      = 0;
+    uint64_t inv_init_perm_res  = 0;
+    uint64_t pre_output         = 0;
+\end{lstlisting}
+\end{center}
+
+
+\begin{center}
+    \captionsetup{justification=raggedright,singlelinecheck=off}
+    \begin{lstlisting}[label=lst:des2,caption=Реализация шифровального  алгоритма DES часть 2]
+    for (i = 0; i < 64; i++) {
+        init_perm_res <<= 1;
+        init_perm_res |= (input >> (64-IP[i])) & LB64_MASK;
+    }
+    L = (uint32_t) (init_perm_res >> 32) & L64_MASK;
+    R = (uint32_t) init_perm_res & L64_MASK;
+    for (i = 0; i < 56; i++) {
+        permuted_choice_1 <<= 1;
+        permuted_choice_1 |= (key >> (64-PC1[i])) & LB64_MASK;
+    }
+    C = (uint32_t) ((permuted_choice_1 >> 28) & 0x000000000fffffff);
+    D = (uint32_t) (permuted_choice_1 & 0x000000000fffffff);
+    for (i = 0; i< 16; i++) {
+        for (j = 0; j < iteration_shift[i]; j++) {
+            C = (0x0fffffff & (C << 1)) | (0x00000001 & (C >> 27));
+            D = (0x0fffffff & (D << 1)) | (0x00000001 & (D >> 27));
+        }
+        permuted_choice_2 = 0;
+        permuted_choice_2 = (((uint64_t) C) << 28) | (uint64_t) D ;
+        sub_key[i] = 0;
+        for (j = 0; j < 48; j++) {
+            sub_key[i] <<= 1;
+            sub_key[i] |= (permuted_choice_2 >> (56-PC2[j])) & LB64_MASK;
+        }
+    }
+    for (i = 0; i < 16; i++) {
+        s_input = 0;
+        for (j = 0; j< 48; j++) {
+            s_input <<= 1;
+            s_input |= (uint64_t) ((R >> (32-E[j])) & LB32_MASK);
+        }
+        if (mode == 'd') {
+            s_input = s_input ^ sub_key[15-i];
+        } else {
+            s_input = s_input ^ sub_key[i];
+        }
+\end{lstlisting}
+\end{center}
+
+\clearpage
+
+\begin{center}
+    \captionsetup{justification=raggedright,singlelinecheck=off}
+    \begin{lstlisting}[label=lst:des3,caption=Реализация шифровального  алгоритма DES часть 3]
+        for (j = 0; j < 8; j++) {
+            row = (char) (((s_input & (0x0000840000000000 >> 6*j)) >> 42)-6*j);
+            row = (row >> 4) | (row & 0x01);
+            column = (char) (((s_input & (0x0000780000000000 >> 6*j)) >> 43)-6*j);
+            s_output <<= 4;
+            s_output |= (uint32_t) (S[j][16*row + column] & 0x0f);
+        }
+        f_function_res = 0;
+        for (j = 0; j < 32; j++) {
+            f_function_res <<= 1;
+            f_function_res |= (s_output >> (32 - P[j])) & LB32_MASK;
+        }
+        temp = R;
+        R = L ^ f_function_res;
+        L = temp;
+    }
+    pre_output = (((uint64_t) R) << 32) | (uint64_t) L;
+    for (i = 0; i < 64; i++) {
+
+        inv_init_perm_res <<= 1;
+        inv_init_perm_res |= (pre_output >> (64-PI[i])) & LB64_MASK;
+
+    }
+    return inv_init_perm_res;
+}
+\end{lstlisting}
+\end{center}
+
+\begin{center}
+    \captionsetup{justification=raggedright,singlelinecheck=off}
+    \begin{lstlisting}[label=lst:cfb,caption=Реализация режима работы CFB]
+uint64_t cfb(uint64_t input, char mode) {
+    uint64_t result = des(IV, key, 'e');
+    if (mode == 'e') {
+        IV = result ^ input;
+        return IV;
+    } else {
+        IV = input;
+        return result ^ input;
+    }
+}
+\end{lstlisting}
+\end{center}
+
+\section{Тестирование}
+
+Тестирование разработанной программы производилось следующим образом: выбирались случайные значения ключа и вектора IV, а также получалась случайная последовательность блоков для шифрования длиной $n$. Она зашифровывалась и расшифровывалась, проверялось совпадение полученного результата с начальными данными. Данная процедура повторялась $n$ раз для значений $n$ от 1 до 100.
+
+
+\section*{Вывод}
+
+В данном разделе были рассмотрены средства реализации, а также представлены листинги реализации шифровального алгоритма DES и режима работы CFB,  произведено тестирование.
+

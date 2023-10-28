@@ -1,0 +1,90 @@
+<mxfile host="65bd71144e">
+    <diagram id="JeN3XUHXLwPGz5JMCtcu" name="Страница 1">
+        <mxGraphModel dx="1785" dy="1240" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1654" pageHeight="2336" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="100" style="edgeStyle=none;rounded=0;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="43" target="89">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="200" y="240"/>
+                            <mxPoint x="320" y="240"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="101" style="edgeStyle=none;rounded=0;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="43" target="88">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="200" y="240"/>
+                            <mxPoint x="80" y="240"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="43" value="Начальная перестановка&lt;br&gt;(Initial Permutation)" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;rotation=0;" parent="1" vertex="1">
+                    <mxGeometry x="100" y="150" width="200" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="99" style="edgeStyle=none;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;rounded=0;endArrow=none;endFill=0;" edge="1" parent="1" source="64" target="43">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="64" value="Входная последовательность" style="html=1;dashed=0;whitespace=wrap;" parent="1" vertex="1">
+                    <mxGeometry x="100" y="40" width="200" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="86" value="0" style="text;html=1;resizable=0;autosize=1;align=center;verticalAlign=middle;points=[];fillColor=none;strokeColor=none;rounded=0;" vertex="1" parent="1">
+                    <mxGeometry x="100" y="100" width="20" height="20" as="geometry"/>
+                </mxCell>
+                <mxCell id="87" value="64" style="text;html=1;resizable=0;autosize=1;align=center;verticalAlign=middle;points=[];fillColor=none;strokeColor=none;rounded=0;" vertex="1" parent="1">
+                    <mxGeometry x="270" y="100" width="30" height="20" as="geometry"/>
+                </mxCell>
+                <mxCell id="88" value="L0" style="html=1;dashed=0;whitespace=wrap;" vertex="1" parent="1">
+                    <mxGeometry x="60" y="260" width="40" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="89" value="R0" style="html=1;dashed=0;whitespace=wrap;" vertex="1" parent="1">
+                    <mxGeometry x="300" y="260" width="40" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="102" style="edgeStyle=none;rounded=0;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="90" target="95">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="80" y="400"/>
+                            <mxPoint x="210" y="400"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="90" value="R16" style="html=1;dashed=0;whitespace=wrap;" vertex="1" parent="1">
+                    <mxGeometry x="60" y="340" width="40" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="103" style="edgeStyle=none;rounded=0;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="91" target="95">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="320" y="400"/>
+                            <mxPoint x="210" y="400"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="91" value="R16" style="html=1;dashed=0;whitespace=wrap;" vertex="1" parent="1">
+                    <mxGeometry x="300" y="340" width="40" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="92" value=". . ." style="text;html=1;resizable=0;autosize=1;align=center;verticalAlign=middle;points=[];fillColor=none;strokeColor=none;rounded=0;rotation=90;" vertex="1" parent="1">
+                    <mxGeometry x="70" y="310" width="30" height="20" as="geometry"/>
+                </mxCell>
+                <mxCell id="94" value=". . ." style="text;html=1;resizable=0;autosize=1;align=center;verticalAlign=middle;points=[];fillColor=none;strokeColor=none;rounded=0;rotation=90;" vertex="1" parent="1">
+                    <mxGeometry x="310" y="310" width="30" height="20" as="geometry"/>
+                </mxCell>
+                <mxCell id="104" style="edgeStyle=none;rounded=0;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;endArrow=none;endFill=0;" edge="1" parent="1" source="95" target="96">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="95" value="Завершающая перестановка&lt;br&gt;(Final Permutation)" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;rotation=0;" vertex="1" parent="1">
+                    <mxGeometry x="110" y="420" width="200" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="96" value="Выходная последоовательность" style="html=1;dashed=0;whitespace=wrap;" vertex="1" parent="1">
+                    <mxGeometry x="110" y="510" width="200" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="97" value="0" style="text;html=1;resizable=0;autosize=1;align=center;verticalAlign=middle;points=[];fillColor=none;strokeColor=none;rounded=0;" vertex="1" parent="1">
+                    <mxGeometry x="110" y="570" width="20" height="20" as="geometry"/>
+                </mxCell>
+                <mxCell id="98" value="64" style="text;html=1;resizable=0;autosize=1;align=center;verticalAlign=middle;points=[];fillColor=none;strokeColor=none;rounded=0;" vertex="1" parent="1">
+                    <mxGeometry x="280" y="570" width="30" height="20" as="geometry"/>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+</mxfile>
