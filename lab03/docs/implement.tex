@@ -1,0 +1,135 @@
+\chapter{Технологическая часть}
+
+В данном разделе будут рассмотрены средства реализации, а также представлены листинги реализации шифровального алгоритма AES и режима работы PCBC, а также произведено тестирование.
+
+\section{Средства реализации}
+В данной работе для реализации был выбран язык программирования $C$. Данный язык удоволетворяет поставленным критериям по средствам реализации.
+
+\section{Реализация алгоритма}
+
+В листингах \ref{lst:aes1}--\ref{lst:aes2} представлена реализация шифровального алгоритма AES, на листинге \ref{lst:pcbc} --- реализация режима работы PCBC.
+
+\begin{center}
+    \captionsetup{justification=raggedright,singlelinecheck=off}
+    \begin{lstlisting}[label=lst:aes1,caption=Реализация шифровального  алгоритма AES, шифровка]
+void EncryptAES128(const byte *msg, const byte *key, byte *c) {
+    int i;
+    byte keys[176];
+    expand_key128(key,keys);
+    memcpy(c, msg, 16);
+    xor_round_key(c,keys,0);
+    for(i=0; i<9; i++) {
+        sub_bytes(c,16);
+        shift_rows(c);
+        mix_cols(c);
+        xor_round_key(c, keys, i+1);
+    }
+    sub_bytes(c,16);
+    shift_rows(c);
+    xor_round_key(c, keys, 10);
+}
+\end{lstlisting}
+\end{center}
+
+
+\begin{center}
+    \captionsetup{justification=raggedright,singlelinecheck=off}
+    \begin{lstlisting}[label=lst:aes2,caption=Реализация шифровального  алгоритма AES расшифровка]
+void DecryptAES128(const byte *c, const byte *key, byte *m) {
+    int i;
+
+    byte keys[176];
+    expand_key128(key,keys);
+
+    memcpy(m,c,16);
+    xor_round_key(m,keys,10);
+    shift_rows_inv(m);
+    sub_bytes_inv(m, 16);
+
+    for (i=0; i<9; i++) {
+        xor_round_key(m,keys,9-i);
+        mix_cols_inv(m);
+        shift_rows_inv(m);
+        sub_bytes_inv(m, 16);
+    }
+    xor_round_key(m, keys, 0);
+}
+\end{lstlisting}
+\end{center}
+
+\clearpage
+
+\begin{center}
+    \captionsetup{justification=raggedright,singlelinecheck=off}
+    \begin{lstlisting}[label=lst:pcbc,caption=Реализация режима работы PCBC]
+void pcbc(byte input128[], byte output128[], byte mode) {
+    if (mode == 'e')
+    {
+        byte to_cypher[16] = {0};
+        for (int i = 0; i < 16; i++)
+            to_cypher[i] = IV[i] ^ input128[i];
+
+        EncryptAES128(to_cypher, key, output128);
+        for (int i = 0; i < 16; i++)
+            IV[i] = input128[i] ^ output128[i];
+    }
+    else
+    {
+        byte almost_decyphered[16] = {0};
+        DecryptAES128(input128, key, almost_decyphered);
+        for (int i = 0; i < 16; i++)
+        {
+            output128[i] = IV[i] ^ almost_decyphered[i];
+            IV[i] = input128[i] ^ output128[i];
+        }
+    }
+}
+\end{lstlisting}
+\end{center}
+
+\section{Тестирование}
+
+Тестирование разработанной программы производилось следующим образом: выбирались случайные значения ключа и вектора IV, а также получалась случайная последовательность блоков для шифрования длиной $n$. Она зашифровывалась и расшифровывалась, проверялось совпадение полученного результата с начальными данными. Данная процедура повторялась $n$ раз для значений $n$ от 1 до 100.
+
+\begin{table}[h]
+	\begin{center}
+		\begin{threeparttable}
+		\captionsetup{justification=raggedright,singlelinecheck=off}
+		\caption{\label{tbl:functional_test} Функциональные тесты}
+		\begin{tabular}{|c@{\hspace{7mm}}|c@{\hspace{7mm}}|c@{\hspace{7mm}}|c@{\hspace{7mm}}|c@{\hspace{7mm}}|c@{\hspace{7mm}}|}
+			\hline
+			Длина, байты & Шифруемое значение & Результат работы \\ 
+			\hline
+			
+			8 &
+		    12345678 &
+			Сообщение об ошибке \\ \hline
+			16 & 1234567812345678 &
+			\begin{tabular}{c}
+			cad29cf5b295a4bf\\
+			5905026c48d83c5
+			\end{tabular}   \\ \hline
+
+			32 &
+			\begin{tabular}{c}
+			1234567812345678\\
+			1234567812345678
+			\end{tabular} &
+			\begin{tabular}{c}
+			cad29cf5b295a4bf\\
+			590d5026c48d83c5\\
+			9ab00f0ae0135012\\
+			710c4ba8595b138c
+			\end{tabular} \\ \hline
+
+		\end{tabular}
+		\end{threeparttable}
+	\end{center}
+	
+\end{table}
+
+
+\section*{Вывод}
+
+В данном разделе были рассмотрены средства реализации, а также представлены листинги реализации шифровального алгоритма AES и режима работы PCBC,  произведено тестирование.
+

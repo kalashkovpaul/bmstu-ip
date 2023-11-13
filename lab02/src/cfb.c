@@ -28,7 +28,7 @@ uint64_t cfb(uint64_t input, char mode) {
     }
     else
     {
-        IV = input;
+        IV = input; 
         return result ^ input;
     }
 }
