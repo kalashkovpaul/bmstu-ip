@@ -1,5 +1,5 @@
 CC = gcc
-CFLAGS = -std=c99 -Wall -Werror -pedantic -Wfloat-conversion -Wvla -Wfloat-equal -Wpedantic -Wextra -Iinc -g3
+CFLAGS = -std=c11 -Wall -Werror -pedantic -Wfloat-conversion -Wvla -Wfloat-equal -Wpedantic -Wextra -Iinc -g3
 .PHONY = clean
 
 app.exe: out/main.o out/rsa.o out/menu.o out/md5.o
@@ -16,9 +16,6 @@ out/menu.o: src/menu.c inc/menu.h inc/rsa.h inc/md5.h
 
 out/md5.o: src/md5.c
 	$(CC) $(CFLAGS) -o $@ -c $<
-
-# out/enigma.o: src/enigma.c inc/menu.h inc/rotors.h inc/constants.h inc/enigma.h
-# 	$(CC) $(CFLAGS) -o $@ -c $<
 
 clean:
 	rm out/*.o

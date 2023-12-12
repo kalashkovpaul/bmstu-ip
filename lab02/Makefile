@@ -17,8 +17,5 @@ out/des.o: src/des.c inc/des.h
 out/menu.o: src/menu.c inc/menu.h inc/cfb.h
 	$(CC) $(CFLAGS) -o $@ -c $<
 
-# out/enigma.o: src/enigma.c inc/menu.h inc/rotors.h inc/constants.h inc/enigma.h
-# 	$(CC) $(CFLAGS) -o $@ -c $<
-
 clean:
 	rm out/*.o

@@ -1,0 +1,254 @@
+\chapter{Технологическая часть}
+
+В данном разделе рассмотрены средства реализации, реализации алгоирмтов сжатиия и разжатия LZW, а также произведено тестирование.
+
+\section{Средства реализации}
+В данной работе для реализации был выбран язык программирования $C$. Данный язык удоволетворяет поставленным критериям по средствам реализации.
+
+\section{Реализация алгоритма}
+
+В листингах \ref{lst:lzw-1}--\ref{lst:lzw-3} представлена реализация алгоритма сжатия LZW, а на листингах \ref{lst:decompress-1}--\ref{lst:decompress-4} --- реализация алгоритма разжатия LZW.
+
+\begin{center}
+    \captionsetup{justification=raggedright,singlelinecheck=off}
+    \begin{lstlisting}[label=lst:lzw-1,caption=Реализация алгоритма сжатия LZW (часть 1)]
+ssize_t lzw_compress(struct lzw_state *state, uint8_t *src, size_t slen, uint8_t *dest, size_t dlen) 
+{
+	if (state->was_init == false) 
+	{
+		lzw_init(state);
+		lzw_output_code(state, CODE_CLEAR);
+	}
+	code_t code = CODE_EOF;
+	size_t prefix_end = 0;
+	state->wptr = 0;
+
+	while (state->rptr + prefix_end < slen) 
+	{
+		if (state->wptr + (state->tree.code_width >> 3) + 1 + 2 + 2 > dlen) 
+			return state->wptr;
+\end{lstlisting}
+\end{center}
+
+
+\begin{center}
+    \captionsetup{justification=raggedright,singlelinecheck=off}
+    \begin{lstlisting}[label=lst:lzw-2,caption=Реализация алгоритма сжатия LZW (часть 2)]
+	
+		++prefix_end;
+		bool overlong = ((state->longest_prefix_allowed > 0) && (prefix_end >= state->longest_prefix_allowed));
+		bool existing_code = lzw_string_table_lookup(state, src + state->rptr, prefix_end, &code);
+		if (!existing_code || overlong)
+        {
+			uint8_t symbol = src[state->rptr + prefix_end - 1];
+			code_t parent = code;
+			code_t parent_len = 1 + lzw_node_prefix_len(state->tree.node[parent]);
+			lzw_output_code(state, parent);
+
+			if (state->tree.next_code == (1UL << state->tree.code_width)
+#if LZW_MAX_CODE_WIDTH == 16
+				|| (state->tree.next_code == LZW_MAX_CODES - 1)
+#endif
+            )
+            {
+				if (state->tree.code_width < LZW_MAX_CODE_WIDTH)
+                {
+					++state->tree.code_width;
+				}
+                else
+                {
+					lzw_flush_reservoir(state, dest, false);
+					lzw_output_code(state, CODE_CLEAR);
+					lzw_reset(state);
+					lzw_flush_reservoir(state, dest, false);
+					state->tree.next_code = CODE_EOF;
+				}
+			}
+			state->tree.node[state->tree.next_code++] = lzw_make_node(symbol, parent, parent_len);
+
+			if (parent_len > state->longest_prefix)
+				state->longest_prefix = parent_len;
+\end{lstlisting}
+\end{center}
+
+
+\begin{center}
+    \captionsetup{justification=raggedright,singlelinecheck=off}
+    \begin{lstlisting}[label=lst:lzw-3,caption=Реализация алгоритма сжатия LZW (часть 3)]
+			state->rptr += parent_len;
+			prefix_end = 0;
+			lzw_flush_reservoir(state, dest, false);
+		}
+	}
+	if (prefix_end != 0)
+    {
+		lzw_output_code(state, code);
+		lzw_flush_reservoir(state, dest, false);
+		state->rptr += prefix_end;
+		prefix_end = 0;
+	}
+
+	if ((state->rptr + prefix_end == slen && state->tree.prev_code != CODE_EOF)
+		|| (state->wptr == 0 && state->bitres_len > 0))
+    {
+		lzw_output_code(state, CODE_EOF);
+		lzw_flush_reservoir(state, dest, true);
+	}
+	return state->wptr;
+}
+\end{lstlisting}
+\end{center}
+
+\begin{center}
+    \captionsetup{justification=raggedright,singlelinecheck=off}
+    \begin{lstlisting}[label=lst:decompress-1,caption=Реализация алгоритма разжатия  LZW (часть 1)]
+ssize_t lzw_decompress(struct lzw_state *state, uint8_t *src, size_t slen, uint8_t *dest, size_t dlen)
+{
+	if (state->was_init == false)
+		lzw_init(state);
+	uint32_t bitres = state->bitres;
+	uint32_t bitres_len = state->bitres_len;
+
+	uint32_t code = 0;
+	size_t wptr = 0;
+
+	while (state->rptr < slen)
+    {
+\end{lstlisting}
+\end{center}
+
+
+\begin{center}
+    \captionsetup{justification=raggedright,singlelinecheck=off}
+    \begin{lstlisting}[label=lst:decompress-2,caption=Реализация алгоритма разжатия  LZW (часть 2)]
+		while ((bitres_len < state->tree.code_width) && (state->rptr < slen))
+        {
+			bitres |= src[state->rptr++] << bitres_len;
+			bitres_len += 8;
+		}
+
+		state->bitres = bitres;
+		state->bitres_len = bitres_len;
+
+		if (state->bitres_len < state->tree.code_width)
+        {
+			return LZW_INVALID_CODE_STREAM;
+		}
+
+		code = bitres & mask_from_width(state->tree.code_width);
+		bitres >>= state->tree.code_width;
+		bitres_len -= state->tree.code_width;
+
+		if (code == CODE_CLEAR)
+        {
+			if (state->tree.next_code != CODE_FIRST)
+				lzw_reset(state);
+			continue;
+		} else if (code == CODE_EOF)
+        {
+			break;
+		} else if (state->must_reset)
+        {
+			return LZW_STRING_TABLE_FULL;
+		}
+
+		if (code <= state->tree.next_code)
+        {
+			bool known_code = code < state->tree.next_code;
+			code_t tcode = known_code ? code : state->tree.prev_code;
+			size_t prefix_len = 1 + lzw_node_prefix_len(state->tree.node[tcode]);
+\end{lstlisting}
+\end{center}
+
+\begin{center}
+    \captionsetup{justification=raggedright,singlelinecheck=off}
+    \begin{lstlisting}[label=lst:decompress-3,caption=Реализация алгоритма разжатия  LZW (часть 3)]
+			uint8_t symbol = 0;
+			if (!known_code && state->tree.prev_code == CODE_EOF)
+				return LZW_INVALID_CODE_STREAM;
+
+			if (prefix_len > state->longest_prefix)
+				state->longest_prefix = prefix_len;
+
+			if (prefix_len + (known_code ? 0 : 1) > dlen)
+				return LZW_DESTINATION_TOO_SMALL;
+
+			if (wptr + prefix_len + (known_code ? 0 : 1) > dlen)
+				return wptr;
+
+			for (size_t i=0 ; i < prefix_len ; ++i)
+            {
+				symbol = lzw_node_symbol(state->tree.node[tcode]);
+				dest[wptr + prefix_len - 1 - i] = symbol;
+				tcode = lzw_node_parent(state->tree.node[tcode]);
+			}
+			wptr += prefix_len;
+
+			if (state->tree.prev_code != CODE_EOF)
+            {
+				if (!known_code) {
+					dest[wptr++] = symbol;
+				}
+
+				state->tree.node[state->tree.next_code] = lzw_make_node(symbol, state->tree.prev_code, 1 + lzw_node_prefix_len(
+					state->tree.node[state->tree.prev_code]
+				));
+
+				if (state->tree.next_code >= mask_from_width(state->tree.code_width)) {
+					if (state->tree.code_width == LZW_MAX_CODE_WIDTH)
+                    {
+						state->must_reset = true;
+						state->tree.prev_code = code;
+\end{lstlisting}
+\end{center}
+
+\begin{center}
+    \captionsetup{justification=raggedright,singlelinecheck=off}
+    \begin{lstlisting}[label=lst:decompress-4,caption=Реализация алгоритма разжатия  LZW (часть 4)]
+						continue;
+					}
+					++state->tree.code_width;
+				}
+				state->tree.next_code++;
+			}
+			state->tree.prev_code = code;
+		}
+        else
+			return LZW_INVALID_CODE_STREAM;
+	}
+	return wptr;
+}
+\end{lstlisting}
+\end{center}
+
+\section{Тестирование}
+
+Тестирование разработанной программы производилось следующим образом: для файлов различных форматов производилось сжатие и разжатие, проверка совпадения исходного значения файла и получившегося, а также расчёт коэффициента сжатия для конкретного файла.
+
+
+\begin{table}[h]
+	\begin{center}
+		\begin{threeparttable}
+		\captionsetup{justification=raggedright,singlelinecheck=off}
+		\caption{\label{tbl:functional_test} Функциональные тесты}
+		\begin{tabular}{|c@{\hspace{7mm}}|c@{\hspace{7mm}}|c@{\hspace{7mm}}|c@{\hspace{7mm}}|c@{\hspace{7mm}}|c@{\hspace{7mm}}|}
+			\hline
+			Формат файла & Размер файла, байты & Коэффициента сжатия, \% \\ 
+			\hline
+			
+			TXT & 376844 & 75.75 \\ \hline
+			PNG & 16760 & -33.28 \\ \hline
+			BMP & 818058 & 4.90\\ \hline
+			MP3 & 733645 & -31.21 \\ \hline
+			JS &  470167 & 68.65 \\ \hline
+		\end{tabular}
+		\end{threeparttable}
+	\end{center}
+	
+\end{table}
+
+
+\section*{Вывод}
+
+В данном разделе были  рассмотрены средства реализации, реализации алгоирмтов сжатиия и разжатия LZW, а также произведено тестирование.
+
