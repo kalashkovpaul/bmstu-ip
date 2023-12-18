@@ -1,5 +1,5 @@
 #include "lzw.h"
-
+#include <stdio.h>
 #define SYMBOL_BITS 8
 #define SYMBOL_MASK ((1UL << SYMBOL_BITS)-1)
 #define PARENT_BITS LZW_MAX_CODE_WIDTH
@@ -210,7 +210,9 @@ static bool lzw_string_table_lookup(struct lzw_state *state, uint8_t *prefix, si
 inline static void lzw_output_code(struct lzw_state *state, code_t code)
 {
 	state->bitres |= code << state->bitres_len;
+	// printf("%d\n", state->bitres_len);
 	state->bitres_len += state->tree.code_width;
+	// printf("%d\n", state->bitres_len);
 	state->tree.prev_code = code;
 
 	// printf("<CODE:%d width=%d reservoir:%02d/%zu:%02x>\n", code, state->tree.code_width, state->bitres_len, sizeof(bitres_t)*8, state->bitres);
@@ -220,25 +222,28 @@ static void lzw_flush_reservoir(struct lzw_state *state, uint8_t *dest, bool fin
 {
 	while (state->bitres_len >= 8)
     {
-		dest[state->wptr++] = state->bitres & 0xFF;
+		// printf("HERE\n");
+		if (!final)
+			dest[state->wptr++] = state->bitres & 0xFF;
 		state->bitres >>= 8;
 		state->bitres_len -= 8;
 	}
 
 	if (final && state->bitres_len > 0)
     {
+		// printf("HERE1\n");
 		dest[state->wptr++] = state->bitres;
 		state->bitres = 0;
 		state->bitres_len = 0;
 	}
 }
 
-ssize_t lzw_compress(struct lzw_state *state, uint8_t *src, size_t slen, uint8_t *dest, size_t dlen)
+ssize_t  lzw_compress(struct lzw_state *state, uint8_t *src, size_t slen, uint8_t *dest, size_t dlen)
 {
 	if (state->was_init == false)
     {
 		lzw_init(state);
-		lzw_output_code(state, CODE_CLEAR);
+		// lzw_output_code(state, CODE_CLEAR);
 	}
 
 	code_t code = CODE_EOF;
